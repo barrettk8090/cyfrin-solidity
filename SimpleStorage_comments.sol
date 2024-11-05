@@ -17,6 +17,11 @@ contract SimpleStorage {
     // Creating an array of type People – Dynamic Array 
     Person[] public listOfPeople; // []
 
+    // Input someones name to retrieve their favorite number 
+    // Create a map/dictionary with these key value associations
+    // Default mapping starts at 0
+    mapping(string => uint256) public nameToFavoriteNumber;
+
     // Can create a static array with a max size:
     // Person[3] public listOfPeople;
     
@@ -41,5 +46,7 @@ contract SimpleStorage {
     // storage - permanent variables that can be modified
     function addPerson(string memory _name, uint256 _favoriteNumber) public {
         listOfPeople.push(Person(_favoriteNumber, _name));
+        // Note: if you try looking for a key you havent added, you'll get the default return 0 back
+        nameToFavoriteNumber[_name] = _favoriteNumber;
     }
 } 
