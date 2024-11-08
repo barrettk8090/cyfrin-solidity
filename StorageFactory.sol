@@ -9,10 +9,23 @@ contract StorageFactory{
     // uint256 public favoriteNumber
     // type visibility name 
 
-    SimpleStorage public simpleStorage; 
+    SimpleStorage[] public listOfSimpleStorageContracts; 
     // UppercaseContract visibility lowercaseVariable
 
+    // address[] public listOfSimpleStorageAddresses;
+
     function createSimpleStorageContract() public {
-        simpleStorage = new SimpleStorage();
+        SimpleStorage newSimpleStorageContract = new SimpleStorage();
+        listOfSimpleStorageContracts.push(newSimpleStorageContract);
+    }
+
+    function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public {
+        // Address
+        // ABI - Application Binary Interface
+        listOfSimpleStorageContracts[_simpleStorageIndex].store(_newSimpleStorageNumber);
+    }
+
+    function sfGet(uint256 _simpleStorageIndex) public view returns(uint256){
+        return listOfSimpleStorageContracts[_simpleStorageIndex].retrieve();
     }
 }
