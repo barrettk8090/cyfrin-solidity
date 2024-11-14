@@ -21,6 +21,12 @@ contract FundMe {
         // Address - 0x694AA1769357215DE4FAC081bf1f309aDC325306 
         // ABI - 
 
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        // (uint80 roundId, int256 price, uint256 startedAt, uint256 timestamp, uint80 answeredInRound) = priceFeed.latestRoundData();
+        (, int256 price,,,) = priceFeed.latestRoundData();
+        // Price of ETH in terms of USD
+        return uint256(price * 1e10);
+
     }
     function getConversionRate ()public {}
 }
